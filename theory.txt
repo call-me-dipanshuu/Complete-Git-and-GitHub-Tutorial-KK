@@ -1,0 +1,1224 @@
+git:I have project and want to colloborate with others team members to complete the task we use git,
+-->I have added new code and it caused glitch in the code and now I wanted to go back to code as in the past I can go with help of git
+-->One folder is given and 1000s of developer contributing to the folder in open source
+Github is a platform that allows us to host our git repository
+Repository is a folder where all changes are saved
+red shows that lines were deleted and green shows that it was added
+-->Terminal allows us to manipulate file structure using commands
+ ls:list of files and folders in the directory
+-->changes in the file,delete the file that will be in the history,these history are stored in another folder called git repository .git
+How do we get .git folder
+
+1)git init
+2)ls -a
+3)touch names.txt
+//helps in creatin names.txt file
+4)git status
+//We will know the changes made which are currently saved,No body knows that those changes are made
+
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        names.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+git add .
+//put all these files so that everyone knows about it and history(staging area)
+-------------------------------------------------------------------------------------------------------------------------
+$ git add names.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   names.txt
+
+----------------------------------------------------------------------------------------------------------------------------
+
+take the photo of this new guest so that there history are known to everyone
+
+git commit -m "names.txt file added"
+
+---------------------------------------------------------------------------------------------------------------------------
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git commit -m "names.txt file added"
+[master (root-commit) 6bf8e95] names.txt file added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 names.txt
+
+---------------------------------------------------------------------------------------------------------------------
+git status 
+//is there anymore people whose photograph has not been taken yet
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+-------------------------------------------------------------------------------------------------------------------
+vi names.txt
+//to add to file
+
+cat names.txt
+//display the content of the file
+------------------------------------------------------------------------------------------------------------------
+Is there any changes made?How do we know?
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   names.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+warning: LF will be replaced by CRLF in names.txt.
+The file will have its original line endings in your working directory
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   names.txt     *this person is on the stage take the picture
+
+------------------------------------------------------------------------------------------------------------------
+if you want to remove from the stage without commiting it
+git restore --staged names.txt
+git status
+//they are outside the stage
+
+-----------------------------------------------------------------------------------------------------------------
+
+where u can see the history of the project?
+history of the changes
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git log
+commit 5cdae0588fe2dc7ff948cd95912191ba67d055b2 (HEAD -> master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 01:13:03 2022 +0530
+
+    names.txt modified
+
+commit 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 00:40:22 2022 +0530
+
+    names.txt file added
+
+---------------------------------------------------------------------------------------------------------------------
+
+delte the file
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ rm -rf names.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    names.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+----------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git commit -m "names.txt deleted"
+[master 2e741b9] names.txt deleted
+ 1 file changed, 54 deletions(-)
+ delete mode 100644 names.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git log
+commit 2e741b91f692809e9d53ec693ae28e5c8d958917 (HEAD -> master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 01:18:43 2022 +0530
+
+    names.txt deleted
+
+commit 5cdae0588fe2dc7ff948cd95912191ba67d055b2
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 01:13:03 2022 +0530
+
+    names.txt modified
+
+commit 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 00:40:22 2022 +0530
+
+    names.txt file added
+----------------------------------------------------------------------------------------------------------------------
+
+whatever commit I copy all the commits above it will be removed
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git reset 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5
+Unstaged changes after reset:
+D       names.txt
+
+----------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git log
+commit 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5 (HEAD -> master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 00:40:22 2022 +0530
+
+    names.txt file added
+
+//Only first commit is present
+
+---------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    names.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+//There photographs taken are removed and put like that there photographs are not taken
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+go to the back stage whenever i want u I will call u back
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ touch surname.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    names.txt -> surname.txt
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ vi surname.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    names.txt -> surname.txt
+
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ vi surname.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ touch houses.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+warning: LF will be replaced by CRLF in surname.txt.
+The file will have its original line endings in your working directory
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    names.txt -> houses.txt
+        new file:   surname.txt
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+i dont want to commit it and also don't want to loose it just wanted to backstage and get u back when I wanted
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git stash
+Saved working directory and index state WIP on master: 6bf8e95 names.txt file added
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git log
+commit 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5 (HEAD -> master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 00:40:22 2022 +0530
+
+    names.txt file added
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+//All the people who are at back stage ,come back to the staging area
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git stash pop
+Removing names.txt
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   houses.txt
+        new file:   surname.txt
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    names.txt
+
+Dropped refs/stash@{0} (35ed076580eec62fc9b355b39a283547c7c16da1)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git stash
+Saved working directory and index state WIP on master: 6bf8e95 names.txt file added
+
+They are backstage
+---------------------------------------------------------------------------------------------------------------------------------
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git stash clear
+
+//Now they are gone
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Github:
+Share it to people:push on github
+
+https://github.com/dipanshuu/Git-classroom.git
+
+We want the url to be attached with our project
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git remote add origin https://github.com/dipanshuu/Git-classroom.git
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+git:commands
+remote:working with url
+add:adding a new url
+origin:name of the url u are going to add
+
+name of the url is origin
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git push origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 217 bytes | 108.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/dipanshuu/Git-classroom.git
+ * [new branch]      master -> master
+
+push origin url to master branch
+---------------------------------------------------------------------------------------------------------------------------------
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ touch hotel.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git commit -m "hotel.txt added"
+[master 397a503] hotel.txt added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hotel.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ touch rollno.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git commit -m "rollno.txt added"
+[master 89e6ea8] rollno.txt added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 rollno.txt
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ vi hotel.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ vi rollno.txt
+--------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   hotel.txt
+        modified:   rollno.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git add .
+warning: LF will be replaced by CRLF in hotel.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in rollno.txt.
+The file will have its original line endings in your working directory
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git commit -m "modification done"
+[master 6098a7a] modification done
+ 2 files changed, 2 insertions(+)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git log
+commit 6098a7a67d91d879cb2b424cad7422f2c062e7cc (HEAD -> master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 02:09:26 2022 +0530
+
+    modification done
+
+commit 89e6ea81c79548c6497d15a0121ff5619272c6f2
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 02:04:11 2022 +0530
+
+    rollno.txt added
+
+commit 397a5034a700426b40f0f402a4572b9a1b4a0e84
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 02:03:32 2022 +0530
+
+    hotel.txt added
+
+commit 6bf8e95ea052d8abaaed8b1ed936336ecd39ccf5 (origin/master)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sat Oct 29 00:40:22 2022 +0530
+
+    names.txt file added
+
+//These commits are branch structured
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Whenever we are working on new feature or working on bug always create a separate branch
+
+//31:41
+
+main branch is actually using by the people
+our code which is not finalised may contains error,so we don't put it on the main branch
+
+git branch feature
+git checkout feature
+* thing head which was on main now goes to feature
+all the commits u will make will be on the head.
+
+git checkout main
+git commit
+main is working on its side and on the other side feature branch is working simultanously
+
+--------------------------------------------------------------------------------------------------------------------------------------
+git merge feature
+//now ur feature code is finalised and added to the main branch
+---------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git branch feature
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ touch cse.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ vi cse.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git commit -m "cse file added"
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        cse.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git push origin feature
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'feature' on GitHub by visiting:
+remote:      https://github.com/dipanshuu/Git-classroom/pull/new/feature
+remote:
+To https://github.com/dipanshuu/Git-classroom.git
+ * [new branch]      feature -> feature
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git merge feature
+Already up to date.
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git checkout feature
+Already on 'feature'
+-------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git add .
+warning: LF will be replaced by CRLF in cse.txt.
+The file will have its original line endings in your working directory
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git commit -m "Again adding"
+[feature b40bccb] Again adding
+ 1 file changed, 2 insertions(+)
+ create mode 100644 cse.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git push origin feature
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 344 bytes | 114.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/dipanshuu/Git-classroom.git
+   6098a7a..b40bccb  feature -> feature
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git merge feature
+Already up to date.
+----------------------------------------------------------------------------------------------------------------------
+
+merging happens with help of pull request
+
+git remote -v
+
+//37:01
+
+*Working on existing projects on GitHub
+How to contribute to the code on github on which we don't have access to the account
+Create copy of project in ur own account with the help of fork
+
+From where u have forked the project :upstream url
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git remote add upstream https://github.com/dipanshuu/mernProjectEcommerce.git
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git remote -v
+origin  https://github.com/dipanshuu/Git-classroom.git (fetch)
+origin  https://github.com/dipanshuu/Git-classroom.git (push)
+upstream        https://github.com/dipanshuu/mernProjectEcommerce.git (fetch)
+upstream        https://github.com/dipanshuu/mernProjectEcommerce.git (push)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Pull request
+Let's make a few commits
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ git clone https://github.com/dipanshuu/mernProjectEcommerce.git
+Cloning into 'mernProjectEcommerce'...
+remote: Enumerating objects: 183, done.
+remote: Counting objects: 100% (24/24), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 183 (delta 9), reused 6 (delta 6), pack-reused 159
+Receiving objects: 100% (183/183), 357.41 KiB | 556.00 KiB/s, done.
+Resolving deltas: 100% (40/40), done.
+
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project (feature)
+$ cd mernProjectEcommerce
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ vi add.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        add.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ vi add.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        add.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git branch deep
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git checkout deepu
+error: pathspec 'deepu' did not match any file(s) known to git
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git checkout deep
+Switched to branch 'deep'
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (deep)
+$ git add .
+warning: LF will be replaced by CRLF in add.txt.
+The file will have its original line endings in your working directory
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (deep)
+$ git commit -m "my commit to abhishek code"
+[deep 5b3fc43] my commit to abhishek code
+ 1 file changed, 1 insertion(+)
+ create mode 100644 add.txt
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (deep)
+$ git status
+On branch deep
+nothing to commit, working tree clean
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (deep)
+$ git log
+commit 5b3fc43fd34b5a1da9a64afe5ef4a6ba6ec88385 (HEAD -> deep)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sun Oct 30 00:36:25 2022 +0530
+
+    my commit to abhishek code
+
+commit a7ea9c9ea2b5264d0b9c561119931a49f04833d1 (origin/master, origin/HEAD, master)
+Merge: cc8e131 ca218df
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Thu Jun 30 10:20:15 2022 +0530
+
+    Merge pull request #6 from zeeshanejaz786/patch-1
+
+    changed the name of class to errorHandler
+
+commit ca218df1979602e3831332629caf81ae02eba3b4
+Author: Muhammad Zeeshan Ejaz <95121238+zeeshanejaz786@users.noreply.github.com>
+Date:   Sun Feb 6 18:07:38 2022 +0500
+
+    changed the name of class to errorHandler
+
+    the name of the class is errorHander which is not wanted. so changed it to errorHandler
+
+commit cc8e13160b99574c08c628bd4f71ad0efbb8a954
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 16:51:46 2021 +0530
+
+    Initial Avatar Fixed
+
+commit 104fc79f1c74f6540094bbd75d7b3ad9f8b97e3a
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 16:49:35 2021 +0530
+
+     Dashboard Title Added
+
+commit 8e6f96ba39f5ea49865e48cedb96d5caa6b71e88
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 13:53:10 2021 +0530
+
+    Prefix Bug Fixed
+
+commit 7c3facd7a1f8c0a918184f5988bc5ebd191f78f8
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 13:24:33 2021 +0530
+
+    Initial Commit
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+*Pull request
+
+Whne u make a copy and create any change in the copy,u request via pull request to make it reflected in the main place
+
+upstream is other organisation account but origin is our main account
+
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (deep)
+$ git push origin deep
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 337 bytes | 337.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for 'deep' on GitHub by visiting:
+remote:      https://github.com/dipanshuu/mernProjectEcommerce/pull/new/deep
+remote:
+To https://github.com/dipanshuu/mernProjectEcommerce.git
+ * [new branch]      deep -> deep
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+every new feature on one branch will create confusion
+one branch can be associate to only one pull request
+
+-----------------------
+online repo contains a commit that my repo doesn't
+
+//git push origin kunal -f
+
+//52:58
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+*Merging ur pull request
+:wq
+Now it will be changed to the upstream
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git fetch --all --prune
+Fetching origin
+
+it will fetch all the commits from the main
+------------------------------------------------------------------------------------------------------------------------------------------------
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git reset --hard upstream/main
+fatal: ambiguous argument 'upstream/main': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+*reset the main branch of origin to the main branch of upstream
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git push origin master
+Everything up-to-date
+
+push th changes
+the branch is even with commclassroom:main
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git pull upstream master
+fatal: 'upstream' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+git push origin master
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git branch temp
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (master)
+$ git checkout temp
+Switched to branch 'temp'
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (temp)
+$ touch 1
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (temp)
+$ git add .;git commit -m "1 added"
+[temp 392dd96] 1 added
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 1
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (temp)
+$ git log
+commit 392dd967313cb243dafa68c4e7b4f9b24e8bd7e7 (HEAD -> temp)
+Author: dipanshuu <dipanshuu0427@gmail.com>
+Date:   Sun Oct 30 10:53:02 2022 +0530
+
+    1 added
+
+commit a7ea9c9ea2b5264d0b9c561119931a49f04833d1 (origin/master, origin/HEAD, master)
+Merge: cc8e131 ca218df
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Thu Jun 30 10:20:15 2022 +0530
+
+    Merge pull request #6 from zeeshanejaz786/patch-1
+
+    changed the name of class to errorHandler
+
+commit ca218df1979602e3831332629caf81ae02eba3b4
+Author: Muhammad Zeeshan Ejaz <95121238+zeeshanejaz786@users.noreply.github.com>
+Date:   Sun Feb 6 18:07:38 2022 +0500
+
+    changed the name of class to errorHandler
+
+    the name of the class is errorHander which is not wanted. so changed it to errorHandler
+
+commit cc8e13160b99574c08c628bd4f71ad0efbb8a954
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 16:51:46 2021 +0530
+
+    Initial Avatar Fixed
+
+commit 104fc79f1c74f6540094bbd75d7b3ad9f8b97e3a
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 16:49:35 2021 +0530
+
+     Dashboard Title Added
+
+commit 8e6f96ba39f5ea49865e48cedb96d5caa6b71e88
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 13:53:10 2021 +0530
+
+    Prefix Bug Fixed
+
+commit 7c3facd7a1f8c0a918184f5988bc5ebd191f78f8
+Author: Abhishek Singh <meabhisingh25@gmail.com>
+Date:   Mon Sep 20 13:24:33 2021 +0530
+
+    Initial Commit
+
+----------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (temp)
+$ git rebase -i 104fc79f1c74f6540094bbd75d7b3ad9f8b97e3a
+[detached HEAD ecf84a6] Initial Avatar Fixed
+ Author: Abhishek Singh <meabhisingh25@gmail.com>
+ Date: Mon Sep 20 16:51:46 2021 +0530
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+ create mode 100644 1
+Successfully rebased and updated refs/heads/temp.
+
+-----------------------------------------------------------------------------
+
+pick cc8e131 Initial Avatar Fixed
+s ca218df changed the name of class to errorHandler
+s 392dd96 1 added
+
+# Rebase 104fc79..392dd96 onto 104fc79 (3 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified); use -c <commit> to reword the commit message
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+commit will be squashed or picked
+-----------------------------------------------------------------------------------------------------------
+
+pick will be merged with previouse commit
+
+all will be in one commit
+------------------------------------------------------------------------------------------------------------
+
+DELL@DESKTOP-AIQL079 MINGW64 ~/desktop/project/mernProjectEcommerce (temp)
+$ git push origin temp
+Enumerating objects: 20, done.
+Counting objects: 100% (20/20), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (11/11), 901 bytes | 901.00 KiB/s, done.
+Total 11 (delta 9), reused 1 (delta 1), pack-reused 0
+remote: Resolving deltas: 100% (9/9), completed with 9 local objects.
+remote:
+remote: Create a pull request for 'temp' on GitHub by visiting:
+remote:      https://github.com/dipanshuu/mernProjectEcommerce/pull/new/temp
+remote:
+To https://github.com/dipanshuu/mernProjectEcommerce.git
+ * [new branch]      temp -> temp
+
+------------------------------------------------------------------------------------------------------------
+merge conflict
+-you have made changes in line no.3 and someone else also made change in line no.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
